@@ -5,6 +5,7 @@ import LoginVue from "./views/Login.vue"
 import AddResto from "./views/AddResto.vue"
 
 import UpdateResto from "./views/UpdateResto.vue"
+import MenuList from "./views/MenuList.vue";
 
 import { createRouter, createWebHistory } from "vue-router";
 
@@ -33,6 +34,11 @@ const routes = [
         name:"UpdateResto",
         component: UpdateResto,
         path:"/update-resto/:id"
+    },
+    {
+        name:"MenuList",
+        component: MenuList,
+        path:"/menu-list/:id"
     },
 
 ];

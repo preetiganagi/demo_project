@@ -6,7 +6,7 @@
             <h1> Hello {{ name }}, Welcome to Home</h1>
         <h2 >List of Pizza places you like</h2>
         </div>
-   <div class="table_style">
+   <div id="table_style">
 
    
 <table border="1">
@@ -22,8 +22,10 @@
     <td>{{ item.name }}</td>
     <td>{{ item.address }}</td>
     <td>{{ item.contact }}</td>
-    <td><router-link :to="'/update-resto/'+item.id">Update</router-link></td>
-    <td><button v-on:click="deleteResto(item.id)">Delete</button></td>
+    <td><router-link :to="'/menu-list/'+item.id">View</router-link>&nbsp;&nbsp;
+    <router-link :to="'/update-resto/'+item.id">Update</router-link>&nbsp;&nbsp;
+    <button v-on:click="deleteResto(item.id)">Delete</button></td>
+
 
 </tr>
 </table>
@@ -76,7 +78,27 @@ export default{
     float: left;
     display: block;
 }
-.table_style {
+/* .table_style {
     display: grid;
+} */
+
+#table_style{
+    display: grid;
+
+    /* background: #FFF8B1; */
+    box-shadow: 1px 2px 3px rgba(0,0,0,0.2);
+    margin-bottom: 30px;
+    padding: 10px 20px;
 }
+#table_style tr{
+    padding: 0;
+}
+#table_style td{
+    margin-right: 10px;
+    margin-top: 10px;
+    padding: 20px;
+    background: rgba(255,255,255,0.7);
+    cursor: pointer;
+}
+
 </style>

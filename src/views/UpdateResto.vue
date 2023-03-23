@@ -7,14 +7,18 @@
         <input type="text" v-model="restaurant.contact" placeholder="Enter Contact No"> 
         <button v-on:click="updateResto">Update Restaurant</button>
 </div>
+<MenuList></MenuList>
 </template>
 <script>
 import axios from "axios";
 import Header from "../components/Header.vue"
+import MenuList from "../views/MenuList.vue";
 export default{
     name: "HomeVue",
     components:{
-        Header
+        Header,
+        MenuList
+
     },
     data(){
         return{
