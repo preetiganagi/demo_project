@@ -13,7 +13,9 @@ const routes = [
     {
         name: "Home",
         component: HomeVue,
-        path: "/"
+        path: "/",
+        meta: { requiresAuth: false }
+
     },
     {
         name: "SignUp",
@@ -33,6 +35,10 @@ const routes = [
     {
         name:"UpdateResto",
         component: UpdateResto,
+        // beforeEnter: (to, from) => {
+        //     // reject the navigation
+        //     // return false
+        //   },
         path:"/update-resto/:id"
     },
     {
@@ -48,4 +54,30 @@ const router = createRouter({
     routes
 });
 
+// router.beforeEach((to, from) => {
+//     // ...
+//     // explicitly return false to cancel the navigation
+//     return false
+//   })
+// router.beforeEach(async (to) => {
+//     if (
+//       to.name !== 'Login' && !localStorage.getItem('user-info')
+//     ) {
+//       // redirect the user to the login page
+//       return { name: 'Login' } 
+//     }
+//     // if  next({ name: 'Login' })
+//     // else if (to.name !== 'SignUp' && !localStorage.getItem('user-info')) 
+//     // else next()
+
+//     // if (to.name !== 'Login' && !localStorage.getItem('user-info')) {
+//     //     next({ name: 'Login' }) 
+//     // } else if((to.name !== 'SignUp' && !localStorage.getItem('user-info')) ){
+//     //     next({ name: 'SignUp' }) 
+//     // } else {
+//     //     next()
+//     // }
+
+//   })
+  
 export default router;

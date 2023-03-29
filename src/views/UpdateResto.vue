@@ -1,5 +1,4 @@
 <template>
-    <Header></Header>
 <h1> Hello {{ name }}, Update Restaurant Information</h1>
 <div class="addresto">
         <input type="text" v-model="restaurant.name" placeholder="Enter Restaurant Name"> 
@@ -11,12 +10,10 @@
 </template>
 <script>
 import axios from "axios";
-import Header from "../components/Header.vue"
 import MenuList from "../views/MenuList.vue";
 export default{
     name: "HomeVue",
     components:{
-        Header,
         MenuList
 
     },

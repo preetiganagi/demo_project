@@ -1,5 +1,4 @@
 <template>
-    <Header></Header>
     <h2> {{ restaurant }} menu List</h2>
     <div id="menu-list">
         <ul>
@@ -20,7 +19,7 @@
         <ul>
             <h3>Click to see the toppings added to pizza</h3>
             <li v-for="product in products" :key="product.id">
-                <a href="#" v-on:click="getToppings(product.id)">
+                <a href="#" v-on:click="getToppingsbyId(product.id)">
                 <span class="name">{{ product.name }}</span>
                 <span class="price">  Rs. {{ product.price }}</span>   </a>
             </li>
@@ -31,39 +30,50 @@
         <div v-if="product" class="toppings">
             <h3> Toppings added to {{ product.name }}</h3>
             <span>{{ product.toppings}}</span> 
-            
+
         </div>
     </div>
 </template>
 <script>
 import axios from "axios";
-import { mapActions, mapGetters } from "vuex";
-import Header from "../components/Header.vue"
+import { mapActions, mapGetters, mapState} from "vuex";
 
 export default{
-    components:{
-        Header
-    },
+
     data(){
         return{
             restaurant: '',
             toppings: 0,
+            product:''
         }
     },
     computed: {
-        products(){
-            return this.$store.state.products
-        },
+        ...mapState({
+            products : (state) => { 
+                console.log(state);
+                return state.menulist.products
+            }
+            
+        }),
+        // products(){
+        //     return this.$store.state.products
+        // },
         // offerProducts(){
         //     return this.$store.getters.offerProducts;
         // }
         //mapgetters
-        ...mapGetters(['offerProducts']),
-        product(){
-            console.log('inside product',this.toppings);
+        ...mapGetters(
+        {
+            'offerProducts' : 'menulist/offerProducts',
+            'getToppingsbyIdGetter': 'menulist/getToppings'
+            
+        }),
+        // product(){
+        //     console.log('inside product',this.toppings);
 
-           return this.$store.getters.getToppings(this.toppings)
-        }
+        //    return this.$store.getters.getToppings(this.toppings)
+        // //    return this.$store.menulist.getToppings(this.toppings)
+        // }
             
         
     },
@@ -78,13 +88,30 @@ export default{
         //     this.$store.commit('decreasePrice', amount)
         // },
         //mapactions 
-        ...mapActions(['reducePrice']),
-        getToppings(id){
-            console.log('calling method', id);
+        ...mapActions(['menulist/reducePrice']),
+        getToppingsbyId(id){
             this.toppings = id;
+            this.product = this.getToppingsbyIdGetter(id)
+        },
+        reducePrice(value){
+            this.$store.dispatch('menulist/actionB', value)
         }
 
     },
+    beforeRouteEnter(){
+        console.log("hello before component"); 
+        //we can fetch data required for the component
+    },
+    beforeRouteUpdate(){
+        console.log("hello after component");
+
+    },
+    beforeRouteLeave(){
+        console.log("hello before leave component");
+        const answer = window.confirm('Do you really want to leave? you have unsaved changes!')
+        if (!answer) return false
+
+    }
 }
 </script>
 <style>

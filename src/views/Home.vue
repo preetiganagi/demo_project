@@ -1,6 +1,4 @@
 <template>
-    <Header></Header>
-
     <div >
         <div>
             <h1> Hello {{ name }}, Welcome to Home</h1>
@@ -34,13 +32,9 @@
 
 </template>
 <script>
-import Header from "../components/Header.vue"
 import axios from 'axios'
 export default{
     name: "HomeVue",
-    components:{
-        Header
-    },
     data(){
         return{
             name : '',

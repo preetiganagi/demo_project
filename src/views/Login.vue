@@ -1,6 +1,7 @@
 <template>
     <img src="../assets/resto-logo.webp" class="imageLogo">
     <h1> Login </h1>
+    <!-- validations -->
     <div class="login">
         <input type="text" v-model="email" placeholder="Enter Email">
         <input type="password" v-model="password" placeholder="Enter Password">
